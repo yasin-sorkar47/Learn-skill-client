@@ -137,43 +137,43 @@ function Header() {
                 )}
               </li>
             )}
+            {/* Authentication Section */}
+            <div className="flex items-center space-x-4">
+              {/* Theme Toggle */}
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="py-2 px-1 rounded"
+              >
+                {darkMode ? (
+                  <MdLightMode className="text-xl dark:text-gray-100 text-gray-700" />
+                ) : (
+                  <MdDarkMode className="text-xl dark:text-gray-100 text-gray-700" />
+                )}
+              </button>
+              {user && (
+                <div className="flex items-center space-x-2">
+                  <img
+                    referrerPolicy="no-referrer"
+                    src={user?.photoURL}
+                    alt="User Avatar"
+                    className="w-10 h-10 rounded-full cursor-pointer"
+                    title={user?.displayName}
+                  />
+                  <button onClick={onLogout} className="btn btn-error btn-sm">
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           </ul>
 
-          {/* Authentication Section */}
-          <div className="flex items-center space-x-4">
-            {/* Theme Toggle */}
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="py-2 px-1 rounded"
-            >
-              {darkMode ? (
-                <MdLightMode className="text-xl dark:text-gray-100 text-gray-700" />
-              ) : (
-                <MdDarkMode className="text-xl dark:text-gray-100 text-gray-700" />
-              )}
-            </button>
-            {user && (
-              <div className="flex items-center space-x-2">
-                <img
-                  referrerPolicy="no-referrer"
-                  src={user?.photoURL}
-                  alt="User Avatar"
-                  className="w-10 h-10 rounded-full cursor-pointer"
-                  title={user?.displayName}
-                />
-                <button onClick={onLogout} className="btn btn-error btn-sm">
-                  Logout
-                </button>
-              </div>
-            )}
-            {/* Hamburger Icon for Mobile */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden text-2xl text-gray-700 dark:text-gray-100"
-            >
-              ☰
-            </button>
-          </div>
+          {/* Hamburger Icon for Mobile */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="lg:hidden text-2xl text-gray-700 dark:text-gray-100"
+          >
+            ☰
+          </button>
         </div>
       </nav>
     </>

@@ -1,9 +1,23 @@
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 
 const UpdateService = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { id } = useParams();
+  const [service, setService] = useState({});
+  const { image, name, price, serviceArea, description, _id } = service;
+
+  useEffect(() => {
+    async function fetchData() {
+      const { data } = await axios.get(`http://localhost:5000/service/${id}`);
+      setService(data);
+    }
+    fetchData();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +41,22 @@ const UpdateService = () => {
       },
     };
 
-    console.log(newService);
+    try {
+      axios
+        .put(`http://localhost:5000/updateService/${_id}`, newService)
+        .then((res) => {
+          if (res.data.modifiedCount) {
+            Swal.fire({
+              title: "Good job!",
+              text: "service has been updated successfully!!",
+              icon: "success",
+            });
+            navigate("/manageService");
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -48,6 +77,7 @@ const UpdateService = () => {
             <input
               type="text"
               id="imageUrl"
+              defaultValue={image}
               name="image"
               placeholder="Enter the image URL"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -65,6 +95,7 @@ const UpdateService = () => {
             <input
               type="text"
               id="serviceName"
+              defaultValue={name}
               name="name"
               placeholder="Enter the service name"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -83,6 +114,7 @@ const UpdateService = () => {
               type="number"
               id="price"
               name="price"
+              defaultValue={price}
               placeholder="Enter the price"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -99,6 +131,7 @@ const UpdateService = () => {
             <input
               type="text"
               id="serviceArea"
+              defaultValue={serviceArea}
               name="serviceArea"
               placeholder="Enter the service area"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -116,6 +149,7 @@ const UpdateService = () => {
             <textarea
               id="description"
               name="description"
+              defaultValue={description}
               placeholder="Enter a description"
               rows="4"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

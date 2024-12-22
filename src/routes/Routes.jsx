@@ -2,11 +2,13 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../layOuts/Main";
 import AddService from "../pages/AddService";
 import AllServices from "../pages/AllServices";
+import BookNowForm from "../pages/bookNowForm";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ManageServices from "../pages/ManageService";
 import NotFound from "../pages/NotFound";
 import Register from "../pages/Register";
+import ServiceDetails from "../pages/ServiceDetails";
 import UpdateService from "../pages/UpdateService";
 import PrivateRoutes from "./PrivateRoutes";
 
@@ -25,6 +27,22 @@ const router = createBrowserRouter([
         path: "/services",
         element: <AllServices />,
         loader: () => fetch("http://localhost:5000/services"),
+      },
+      {
+        path: "/serviceDetails/:id",
+        element: (
+          <PrivateRoutes>
+            <ServiceDetails />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/bookNowForm/:id",
+        element: (
+          <PrivateRoutes>
+            <BookNowForm />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/addService",

@@ -4,7 +4,7 @@ import Service from "./Service";
 export default function Services({ services }) {
   return (
     <div className="w-11/12 mx-auto">
-      <h2 className="text-2xl lg:text-4xl font-bold text-center  text-gray-700 ">
+      <h2 className="text-2xl lg:text-4xl font-bold text-center  text-gray-700 dark:text-gray-300">
         Popular Services
       </h2>
       <p className="mb-8 mt-2 text-center text-gray-600 dark:text-gray-300 mx-auto w-[700px]">

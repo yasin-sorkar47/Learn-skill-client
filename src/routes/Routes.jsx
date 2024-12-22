@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layOuts/Main";
 import AddService from "../pages/AddService";
+import AllServices from "../pages/AllServices";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ManageServices from "../pages/ManageService";
@@ -18,6 +19,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: () => fetch("http://localhost:5000/services?limit=4"),
+      },
+      {
+        path: "/services",
+        element: <AllServices />,
+        loader: () => fetch("http://localhost:5000/services"),
       },
       {
         path: "/addService",

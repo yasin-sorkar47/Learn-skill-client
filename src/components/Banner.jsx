@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import bannerImage from "../assets/banner.jpg";
 
 export default function Banner() {
@@ -23,9 +24,9 @@ export default function Banner() {
               empowerment for resource sucking platforms. Phosfluorescently{" "}
             </p>
             <div className="text-center mt-3">
-              <button className="btn btn-primary btn-md">
+              <Link to={"/services"} className="btn btn-primary btn-md">
                 Explore our course
-              </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ export default function ManageServiceCard({ service, handleDelete }) {
   return (
     <div className="bg-white shadow rounded-lg overflow-hidden">
       <img
-        className="w-full h-48 object-cover"
+        className="w-full h-60 object-cover"
         src={service.image}
         alt={service.name}
       />

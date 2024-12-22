@@ -59,9 +59,14 @@ const ManageServices = () => {
   return (
     <div className="min-h-screen  flex  justify-center">
       <div className=" p-8 rounded-lg  w-full max-w-4xl">
-        <h1 className="text-2xl lg:text-3xl font-bold mb-6 dark:text-gray-100 text-gray-800 text-center">
+        <h1 className="text-2xl lg:text-3xl font-bold dark:text-gray-100 text-gray-800 text-center">
           Manage Your Services
         </h1>
+        <p className="mb-8 mt-2 text-center text-gray-600 dark:text-gray-300 mx-auto w-[700px]">
+          Enthusiastically maximize virtual methodologies whereas
+          backward-compatible e-services. Quickly develop principle-centered
+          scenarios before next-generation action items
+        </p>
         <div className="space-y-6">
           {services.length > 0 ? (
             services.map((service) => (

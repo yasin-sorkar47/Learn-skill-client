@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Service({ service }) {
   return (
@@ -10,7 +11,7 @@ export default function Service({ service }) {
       <img
         src={service.image}
         alt={service.name}
-        className="w-full h-48 object-cover rounded-md mb-4"
+        className="w-full h-64 object-cover rounded-md mb-4"
       />
       <h3 className="text-lg font-bold text-gray-700">{service.name}</h3>
       <p className="text-gray-600 text-sm mb-4">
@@ -28,9 +29,14 @@ export default function Service({ service }) {
       </div>
       <div className="flex justify-between items-center">
         <span className="text-lg font-bold text-green-600">
-          {service.price}
+          Price: ${service.price}.00
         </span>
-        <button className="btn btn-primary btn-md">View Details</button>
+        <Link
+          to={`/serviceDetails/${service._id}`}
+          className="btn btn-primary btn-md"
+        >
+          View Details
+        </Link>
       </div>
     </motion.div>
   );

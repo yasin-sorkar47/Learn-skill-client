@@ -1,8 +1,6 @@
-export default function ManageServiceCard({
-  service,
-  handleDelete,
-  handleUpdate,
-}) {
+import { Link } from "react-router-dom";
+
+export default function ManageServiceCard({ service, handleDelete }) {
   return (
     <div className="bg-white shadow rounded-lg overflow-hidden">
       <img
@@ -20,12 +18,12 @@ export default function ManageServiceCard({
           <strong>Service Area:</strong> {service.serviceArea}
         </p>
         <div className="mt-4 flex space-x-4">
-          <button
-            onClick={() => handleUpdate(service._id)}
+          <Link
+            to={`/updateService/${service._id}`}
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           >
             Update
-          </button>
+          </Link>
           <button
             onClick={() => handleDelete(service._id)}
             className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"

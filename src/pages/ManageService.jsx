@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import ManageServiceCard from "../components/ManageServiceCard";
 import useAuth from "../hooks/useAuth";
-import ManageServiceCard from "./ManageServiceCard";
 
 const ManageServices = () => {
   const { user } = useAuth();
@@ -15,28 +16,48 @@ const ManageServices = () => {
       const { data } = await axios.get(
         `http://localhost:5000/services/${user.email}`
       );
-      console.log(data);
       setServices(data);
     }
 
     fetchData();
   }, []);
 
-  const handleUpdate = (id) => {
-    // Handle update logic here
-    console.log(`Update service with ID: ${id}`);
-  };
-
   const handleDelete = (id) => {
-    // Handle delete logic here
-    if (window.confirm("Are you sure you want to delete this service?")) {
-      console.log(`Deleted service with ID: ${id}`);
-      // Implement service deletion logic (e.g., API call to delete the service)
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        try {
+          axios
+            .delete(`http://localhost:5000/deleteService/${id}`)
+            .then((res) => {
+              if (res.data.deletedCount) {
+                const newServices = services.filter(
+                  (service) => service._id !== id
+                );
+                setServices(newServices);
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+              }
+            });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
   };
 
   return (
-    <div className="min-h-screen  flex items-center justify-center">
+    <div className="min-h-screen  flex  justify-center">
       <div className=" p-8 rounded-lg  w-full max-w-4xl">
         <h1 className="text-2xl lg:text-3xl font-bold mb-6 dark:text-gray-100 text-gray-800 text-center">
           Manage Your Services
@@ -48,7 +69,6 @@ const ManageServices = () => {
                 key={service._id}
                 service={service}
                 handleDelete={handleDelete}
-                handleUpdate={handleUpdate}
               />
             ))
           ) : (

@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import ManageServices from "../pages/ManageService";
 import NotFound from "../pages/NotFound";
 import Register from "../pages/Register";
+import UpdateService from "../pages/UpdateService";
 import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <ManageServices />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/updateService/:id",
+        element: (
+          <PrivateRoutes>
+            <UpdateService />
           </PrivateRoutes>
         ),
       },

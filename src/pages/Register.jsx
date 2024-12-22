@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 export default function Register() {
-  const { createUser, setUser, updateUser, singInWithGoogle } = useAuth();
+  const { createUser, setLoader, setUser, updateUser, singInWithGoogle } =
+    useAuth();
   const navigate = useNavigate();
   const [err, setErr] = useState("");
 
@@ -41,6 +42,7 @@ export default function Register() {
         updateUser(updateValue)
           .then(() => {
             setUser(result.user);
+            setLoader(false);
             e.target.reset();
             navigate("/");
           })
@@ -58,6 +60,7 @@ export default function Register() {
     singInWithGoogle()
       .then((result) => {
         setUser(result.user);
+        setLoader(false);
         navigate("/");
       })
       .catch((error) => {

@@ -24,6 +24,7 @@ export default function AuthProvider({ children }) {
 
   //   singOut user
   const singOutUser = () => {
+    setLoader(true);
     return signOut(auth);
   };
 
@@ -48,10 +49,12 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
+        console.log("from current user", currentUser);
         setUser(currentUser);
         setLoader(false);
       } else {
         console.log("user is logged out");
+        setUser(null);
         setLoader(false);
       }
     });
@@ -65,6 +68,7 @@ export default function AuthProvider({ children }) {
     user,
     setUser,
     loader,
+    setLoader,
     createUser,
     singInUser,
     singOutUser,

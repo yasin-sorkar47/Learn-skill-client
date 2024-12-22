@@ -7,7 +7,7 @@ import useAuth from "../hooks/useAuth";
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { user, singOutUser, setUser } = useAuth();
+  const { user, singOutUser, setUser, setLoader } = useAuth();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(() => {
     const storedTheme = localStorage.getItem("theme");

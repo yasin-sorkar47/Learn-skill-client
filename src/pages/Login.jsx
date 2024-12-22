@@ -6,18 +6,20 @@ import useAuth from "../hooks/useAuth";
 export default function Login() {
   const [err, setErr] = useState(null);
   const navigate = useNavigate();
-  const { singInUser, singInWithGoogle, setUser } = useAuth();
+  const { singInUser, singInWithGoogle, setUser, setLoader } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const email = e.target.value;
-    const password = e.target.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
     setErr(null);
+
     // singIn
     singInUser(email, password)
       .then((result) => {
+        setLoader(false);
         e.target.reset();
         navigate("/");
       })
@@ -30,6 +32,7 @@ export default function Login() {
     singInWithGoogle()
       .then((result) => {
         setUser(result.user);
+        setLoader(false);
         navigate("/");
       })
       .catch((error) => {

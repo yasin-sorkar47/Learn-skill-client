@@ -1,25 +1,26 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import ManageServiceCard from "./ManageServiceCard";
 
 const ManageServices = () => {
-  const services = [
-    {
-      id: 1,
-      imageUrl: "https://via.placeholder.com/800x200",
-      serviceName: "Service Name 1",
-      description: "Description of the service goes here.",
-      price: 100,
-      serviceArea: "New York",
-    },
-    {
-      id: 2,
-      imageUrl: "https://via.placeholder.com/800x200",
-      serviceName: "Service Name 2",
-      description: "Description of the service goes here.",
-      price: 150,
-      serviceArea: "Los Angeles",
-    },
-    // Add more services as needed
-  ];
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    // Fetch services from the API
+    async function fetchData() {
+      const { data } = await axios.get(
+        `http://localhost:5000/services/${user.email}`
+      );
+      console.log(data);
+      setServices(data);
+    }
+
+    fetchData();
+  }, []);
 
   const handleUpdate = (id) => {
     // Handle update logic here
@@ -41,42 +42,27 @@ const ManageServices = () => {
           Manage Your Services
         </h1>
         <div className="space-y-6">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="bg-white shadow rounded-lg overflow-hidden"
-            >
-              <img
-                className="w-full h-48 object-cover"
-                src={service.imageUrl}
-                alt={service.serviceName}
+          {services.length > 0 ? (
+            services.map((service) => (
+              <ManageServiceCard
+                key={service._id}
+                service={service}
+                handleDelete={handleDelete}
+                handleUpdate={handleUpdate}
               />
-              <div className="p-4">
-                <h2 className="text-xl font-semibold">{service.serviceName}</h2>
-                <p className="text-gray-600 mt-2">{service.description}</p>
-                <p className="text-gray-800 mt-2">
-                  <strong>Price:</strong> ${service.price}
-                </p>
-                <p className="text-gray-800 mt-1">
-                  <strong>Service Area:</strong> {service.serviceArea}
-                </p>
-                <div className="mt-4 flex space-x-4">
-                  <button
-                    onClick={() => handleUpdate(service.id)}
-                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                  >
-                    Update
-                  </button>
-                  <button
-                    onClick={() => handleDelete(service.id)}
-                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
+            ))
+          ) : (
+            <div className="text-center text-gray-800 dark:text-gray-100">
+              <p>You have not added any services yet.</p>
+              <p>Click the button below to add a new service.</p>
+              <button
+                className="btn btn-primary btn-md mt-4"
+                onClick={() => navigate("/addService")}
+              >
+                Add Service
+              </button>
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>

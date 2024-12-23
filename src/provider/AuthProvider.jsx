@@ -67,9 +67,18 @@ export default function AuthProvider({ children }) {
           console.log(error);
         }
       } else {
-        console.log("user is logged out");
-        setUser(null);
-        setLoader(false);
+        try {
+          axios
+            .get("http://localhost:5000/logout", { withCredentials: true })
+            .then((res) => {
+              console.log(res.data);
+            });
+          console.log("user is logged out");
+          setUser(null);
+          setLoader(false);
+        } catch (error) {
+          console.log(error);
+        }
       }
     });
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
@@ -45,6 +46,9 @@ const BookNowForm = () => {
 
   return (
     <div className="min-h-screen my-10 flex items-center justify-center">
+      <Helmet>
+        <title>LearnSkills | Services Book Form</title>
+      </Helmet>
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
         <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
           Service Purchase Form

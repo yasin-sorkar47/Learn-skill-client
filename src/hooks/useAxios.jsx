@@ -17,8 +17,6 @@ export default function useAxios() {
     },
     (error) => {
       if (error?.response?.status === 401 || error?.response?.status === 403) {
-        console.log(error.response.status);
-
         singOutUser();
         then(() => {
           console.log("axios3");

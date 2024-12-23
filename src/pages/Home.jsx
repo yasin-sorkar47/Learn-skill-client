@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { useLoaderData } from "react-router-dom";
 import Banner from "../components/Banner";
 import Services from "../components/Services";
@@ -9,6 +10,9 @@ const HomePage = () => {
 
   return (
     <div className="space-y-8">
+      <Helmet>
+        <title>LearnSkills | Home</title>
+      </Helmet>
       <Banner />
       <Services services={services} />
       <div className="w-11/12 mx-auto space-y-8">

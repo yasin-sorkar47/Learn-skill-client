@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
 import useAxios from "../hooks/useAxios";
 
@@ -17,6 +18,9 @@ const ServiceDetails = () => {
 
   return (
     <div className="rounded-lg min-h-screen  w-full max-w-4xl mx-auto p-8 ">
+      <Helmet>
+        <title>LearnSkills | Services Details</title>
+      </Helmet>
       <h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-gray-400">
         Service Details
       </h1>

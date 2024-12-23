@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import ManageServiceCard from "../components/ManageServiceCard";
@@ -55,6 +56,9 @@ const ManageServices = () => {
 
   return (
     <div className="min-h-screen  flex  justify-center">
+      <Helmet>
+        <title>LearnSkills | Manage Services</title>
+      </Helmet>
       <div className=" p-8 rounded-lg  w-full max-w-4xl">
         <h1 className="text-2xl lg:text-3xl font-bold dark:text-gray-100 text-gray-800 text-center">
           My added Services{" "}

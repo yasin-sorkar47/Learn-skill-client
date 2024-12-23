@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import Service from "../components/Service";
 import useAxios from "../hooks/useAxios";
 
@@ -17,6 +18,9 @@ export default function AllServices() {
 
   return (
     <div className="rounded-lg min-h-screen  w-full max-w-4xl mx-auto p-8 ">
+      <Helmet>
+        <title>LearnSkills | All Services</title>
+      </Helmet>
       <h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-gray-400">
         All Services
       </h1>

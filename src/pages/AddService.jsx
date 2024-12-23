@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
@@ -49,6 +50,9 @@ const AddService = () => {
 
   return (
     <div className="min-h-screen  flex items-center justify-center">
+      <Helmet>
+        <title>LearnSkills | Add Services</title>
+      </Helmet>
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
         <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
           Add a New Service

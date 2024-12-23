@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import BookedServicesTable from "../components/BookedServicesTable";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
@@ -19,6 +20,9 @@ export default function BookedServices() {
 
   return (
     <div className="min-h-screen  flex  justify-center">
+      <Helmet>
+        <title>LearnSkills | Booked Services</title>
+      </Helmet>
       <div className=" p-8 rounded-lg  w-full max-w-7xl">
         <h1 className="text-2xl lg:text-3xl font-bold dark:text-gray-100 text-gray-800 text-center">
           My BooKed Services{" "}

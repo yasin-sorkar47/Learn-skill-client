@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -49,8 +50,22 @@ export default function AuthProvider({ children }) {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        setUser(currentUser);
-        setLoader(false);
+        const email = currentUser.email;
+        try {
+          axios
+            .post(
+              "http://localhost:5000/jwt",
+              { email },
+              { withCredentials: true }
+            )
+            .then((res) => {
+              console.log(res.data);
+            });
+          setUser(currentUser);
+          setLoader(false);
+        } catch (error) {
+          console.log(error);
+        }
       } else {
         console.log("user is logged out");
         setUser(null);

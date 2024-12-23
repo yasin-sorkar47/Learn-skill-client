@@ -10,7 +10,12 @@ export default function ManageServiceCard({ service, handleDelete }) {
       />
       <div className="p-4">
         <h2 className="text-xl font-semibold">{service.name}</h2>
-        <p className="text-gray-600 mt-2">{service.description}</p>
+        <p className="text-gray-600 mt-2">
+          {" "}
+          {service.description.length > 100
+            ? service.description.slice(0, 100) + "..."
+            : service.description}
+        </p>
         <p className="text-gray-800 mt-2">
           <strong>Price:</strong> ${service.price}
         </p>

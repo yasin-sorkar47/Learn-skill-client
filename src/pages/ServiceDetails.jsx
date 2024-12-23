@@ -15,7 +15,15 @@ const ServiceDetails = () => {
   }, []);
 
   return (
-    <>
+    <div className="rounded-lg  w-full max-w-4xl mx-auto p-8 ">
+      <h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-gray-400">
+        Service Details
+      </h1>
+      <p className=" mt-2 mb-10 text-center w-[600px] mx-auto text-gray-700 dark:text-gray-400">
+        Objectively disintermediate clicks-and-mortar ideas vis-a-vis
+        transparent portals. Conveniently incentivize cost effective customer
+        service without innovation.
+      </p>
       {service && (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
           <div className="bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full">
@@ -72,7 +80,7 @@ const ServiceDetails = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

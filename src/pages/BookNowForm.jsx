@@ -1,12 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
 
 const BookNowForm = () => {
-  const [serviceTakingDate, setServiceTakingDate] = useState("");
-  const [specialInstruction, setSpecialInstruction] = useState("");
-
   const { user } = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -23,8 +21,25 @@ const BookNowForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log({ serviceTakingDate, specialInstruction });
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    data.status = "pending";
+
+    try {
+      axios.post("http://localhost:5000/bookings", data).then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: "Good job!",
+            text: "You have booked!!",
+            icon: "success",
+          });
+          e.target.reset();
+          navigate("/bookedServices");
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -42,7 +57,8 @@ const BookNowForm = () => {
             <input
               type="text"
               defaultValue={_id}
-              disabled
+              name="serviceId"
+              readOnly
               className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:outline-none"
             />
           </div>
@@ -55,7 +71,8 @@ const BookNowForm = () => {
             <input
               type="text"
               defaultValue={name}
-              disabled
+              name="name"
+              readOnly
               className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:outline-none"
             />
           </div>
@@ -68,7 +85,8 @@ const BookNowForm = () => {
             <input
               type="text"
               defaultValue={image}
-              disabled
+              name="image"
+              readOnly
               className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:outline-none"
             />
           </div>
@@ -81,7 +99,8 @@ const BookNowForm = () => {
             <input
               type="email"
               defaultValue={provider?.email}
-              disabled
+              name="providerEmail"
+              readOnly
               className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:outline-none"
             />
           </div>
@@ -94,7 +113,8 @@ const BookNowForm = () => {
             <input
               type="text"
               defaultValue={provider?.name}
-              disabled
+              name="providerName"
+              readOnly
               className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:outline-none"
             />
           </div>
@@ -107,7 +127,8 @@ const BookNowForm = () => {
             <input
               type="email"
               defaultValue={user?.email}
-              disabled
+              name="currentUserEmail"
+              readOnly
               className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:outline-none"
             />
           </div>
@@ -120,7 +141,8 @@ const BookNowForm = () => {
             <input
               type="text"
               defaultValue={user?.displayName}
-              disabled
+              name="currentUserName"
+              readOnly
               className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:outline-none"
             />
           </div>
@@ -132,8 +154,8 @@ const BookNowForm = () => {
             </label>
             <input
               type="date"
-              value={serviceTakingDate}
-              onChange={(e) => setServiceTakingDate(e.target.value)}
+              required
+              name="serviceTakingDate"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -144,8 +166,8 @@ const BookNowForm = () => {
               Special Instruction
             </label>
             <textarea
-              value={specialInstruction}
-              onChange={(e) => setSpecialInstruction(e.target.value)}
+              name="specialInstruction"
+              required
               placeholder="Enter any special instructions, address, or customized service plan"
               rows="4"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -160,7 +182,8 @@ const BookNowForm = () => {
             <input
               type="text"
               defaultValue={price}
-              disabled
+              name="price"
+              readOnly
               className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-700 focus:outline-none"
             />
           </div>

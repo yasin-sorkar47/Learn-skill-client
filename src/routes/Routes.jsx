@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../layOuts/Main";
 import AddService from "../pages/AddService";
 import AllServices from "../pages/AllServices";
+import BookedServices from "../pages/BookedServices";
 import BookNowForm from "../pages/bookNowForm";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <BookNowForm />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/bookedServices",
+        element: (
+          <PrivateRoutes>
+            <BookedServices />
           </PrivateRoutes>
         ),
       },

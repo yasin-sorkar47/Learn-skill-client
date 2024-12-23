@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import ServiceToDoTable from "../components/ServiceToDoTable";
 import useAuth from "../hooks/useAuth";
 import useAxios from "../hooks/useAxios";
@@ -22,6 +23,9 @@ export default function ServiceToDo() {
 
   return (
     <div className="min-h-screen  flex  justify-center">
+      <Helmet>
+        <title>LearnSkills | Services To Do</title>
+      </Helmet>
       <div className=" p-8 rounded-lg  w-full max-w-[1500px]">
         <h1 className="text-2xl lg:text-3xl font-bold dark:text-gray-100 text-gray-800 text-center">
           Services To Do{" "}

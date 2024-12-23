@@ -75,9 +75,10 @@ const UpdateService = () => {
               Image URL of the Service
             </label>
             <input
-              type="text"
+              type="url"
               id="imageUrl"
               defaultValue={image}
+              required
               name="image"
               placeholder="Enter the image URL"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -96,6 +97,7 @@ const UpdateService = () => {
               type="text"
               id="serviceName"
               defaultValue={name}
+              required
               name="name"
               placeholder="Enter the service name"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -113,6 +115,7 @@ const UpdateService = () => {
             <input
               type="number"
               id="price"
+              required
               name="price"
               defaultValue={price}
               placeholder="Enter the price"
@@ -132,6 +135,7 @@ const UpdateService = () => {
               type="text"
               id="serviceArea"
               defaultValue={serviceArea}
+              required
               name="serviceArea"
               placeholder="Enter the service area"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -150,6 +154,7 @@ const UpdateService = () => {
               id="description"
               name="description"
               defaultValue={description}
+              required
               placeholder="Enter a description"
               rows="4"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

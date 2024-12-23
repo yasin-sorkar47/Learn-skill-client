@@ -66,7 +66,7 @@ const ManageServices = () => {
               {services.length}
             </span>
           </h1>
-          <p className="mb-8 mt-2 text-center text-gray-600 dark:text-gray-300 mx-auto w-[700px]">
+          <p className="mb-8 mt-2 text-center text-gray-600 dark:text-gray-300 mx-auto max-w-[700px]">
             Enthusiastically maximize virtual methodologies whereas
             backward-compatible e-services. Quickly develop principle-centered
             scenarios before next-generation action items

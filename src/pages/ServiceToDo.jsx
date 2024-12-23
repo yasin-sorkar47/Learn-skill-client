@@ -1,16 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import BookedServicesTable from "../components/BookedServicesTable";
+import ServiceToDoTable from "../components/ServiceToDoTable";
 import useAuth from "../hooks/useAuth";
 
-export default function BookedServices() {
+export default function ServiceToDo() {
   const [services, setServices] = useState([]);
   const { user } = useAuth();
   useEffect(() => {
     // Fetch services from the API
     async function fetchData() {
       const { data } = await axios.get(
-        `http://localhost:5000/bookings/${user?.email}`
+        `http://localhost:5000/bookings/${user?.email}?provider=true`
       );
       setServices(data);
     }
@@ -18,11 +18,13 @@ export default function BookedServices() {
     fetchData();
   }, []);
 
+  console.log(services);
+
   return (
     <div className="min-h-screen  flex  justify-center">
-      <div className=" p-8 rounded-lg  w-full max-w-7xl">
+      <div className=" p-8 rounded-lg  w-full max-w-[1500px]">
         <h1 className="text-2xl lg:text-3xl font-bold dark:text-gray-100 text-gray-800 text-center">
-          My BooKed Services{" "}
+          Services To Do{" "}
           <span className="bg-purple-300 px-3 text-purple-500 text-xl rounded-full">
             {services.length}
           </span>
@@ -33,7 +35,7 @@ export default function BookedServices() {
           procedures whereas customer directed channels.
         </p>
         <div className="space-y-6">
-          <BookedServicesTable services={services} />
+          <ServiceToDoTable services={services} />
         </div>
       </div>
     </div>

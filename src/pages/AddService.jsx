@@ -62,7 +62,8 @@ const AddService = () => {
               Image URL of the Service
             </label>
             <input
-              type="text"
+              type="url"
+              required
               id="imageUrl"
               name="image"
               placeholder="Enter the image URL"
@@ -81,6 +82,7 @@ const AddService = () => {
             <input
               type="text"
               id="serviceName"
+              required
               name="name"
               placeholder="Enter the service name"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -98,6 +100,7 @@ const AddService = () => {
             <input
               type="number"
               id="price"
+              required
               name="price"
               placeholder="Enter the price"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -115,6 +118,7 @@ const AddService = () => {
             <input
               type="text"
               id="serviceArea"
+              required
               name="serviceArea"
               placeholder="Enter the service area"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -132,6 +136,7 @@ const AddService = () => {
             <textarea
               id="description"
               name="description"
+              required
               placeholder="Enter a description"
               rows="4"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

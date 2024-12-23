@@ -1,6 +1,6 @@
 export default function BookServiceRow({ index, service }) {
   return (
-    <tr>
+    <tr className="dark:text-green-100">
       <td>{index + 1}</td>
       <td>
         <div className="flex items-center gap-3">
@@ -21,7 +21,15 @@ export default function BookServiceRow({ index, service }) {
       <td>${service.price}</td>
       <td>{service.serviceTakingDate}</td>
       <td>
-        <span className={`bg-purple-200 px-2 p-1 rounded-full text-purple-500`}>
+        <span
+          className={`bg-purple-200 px-2 p-1 rounded-full text-purple-500 ${
+            service.status === "pending" ? "text-purple-500 bg-purple-200 " : ""
+          } ${
+            service.status === "working" ? "text-yellow-500 bg-yellow-200 " : ""
+          }  ${
+            service.status === "completed" ? "text-green-500 bg-green-200 " : ""
+          }`}
+        >
           {service.status}
         </span>
       </td>

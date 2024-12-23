@@ -14,7 +14,10 @@ const ManageServices = () => {
     // Fetch services from the API
     async function fetchData() {
       const { data } = await axios.get(
-        `http://localhost:5000/services/${user.email}`
+        `http://localhost:5000/services/${user.email}`,
+        {
+          withCredentials: true,
+        }
       );
       setServices(data);
     }

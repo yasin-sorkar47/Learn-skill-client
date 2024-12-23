@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -34,21 +33,19 @@ const ManageServices = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         try {
-          axios
-            .delete(`http://localhost:5000/deleteService/${id}`)
-            .then((res) => {
-              if (res.data.deletedCount) {
-                const newServices = services.filter(
-                  (service) => service._id !== id
-                );
-                setServices(newServices);
-                Swal.fire({
-                  title: "Deleted!",
-                  text: "Your file has been deleted.",
-                  icon: "success",
-                });
-              }
-            });
+          axiosInstance.delete(`/deleteService/${id}`).then((res) => {
+            if (res.data.deletedCount) {
+              const newServices = services.filter(
+                (service) => service._id !== id
+              );
+              setServices(newServices);
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
         } catch (error) {
           console.log(error);
         }

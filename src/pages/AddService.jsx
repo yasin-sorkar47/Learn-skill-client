@@ -1,11 +1,12 @@
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 
 const AddService = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const axiosInstance = useAxios();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +31,7 @@ const AddService = () => {
     };
 
     try {
-      axios.post("http://localhost:5000/addService", newService).then((res) => {
+      axiosInstance.post("/addService", newService).then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
             title: "Good job!",

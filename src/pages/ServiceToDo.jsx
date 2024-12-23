@@ -1,16 +1,18 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import ServiceToDoTable from "../components/ServiceToDoTable";
 import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 
 export default function ServiceToDo() {
   const [services, setServices] = useState([]);
   const { user } = useAuth();
+  const axiosInstance = useAxios();
+
   useEffect(() => {
     // Fetch services from the API
     async function fetchData() {
-      const { data } = await axios.get(
-        `http://localhost:5000/bookings/${user?.email}?provider=true`
+      const { data } = await axiosInstance.get(
+        `/bookings/${user?.email}?provider=true`
       );
       setServices(data);
     }

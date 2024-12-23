@@ -1,17 +1,16 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import BookedServicesTable from "../components/BookedServicesTable";
 import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 
 export default function BookedServices() {
   const [services, setServices] = useState([]);
+  const axiosInstance = useAxios();
   const { user } = useAuth();
   useEffect(() => {
     // Fetch services from the API
     async function fetchData() {
-      const { data } = await axios.get(
-        `http://localhost:5000/bookings/${user?.email}`
-      );
+      const { data } = await axiosInstance.get(`/bookings/${user?.email}`);
       setServices(data);
     }
 

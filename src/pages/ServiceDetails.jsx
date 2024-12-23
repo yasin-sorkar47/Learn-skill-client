@@ -1,14 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import useAxios from "../hooks/useAxios";
 
 const ServiceDetails = () => {
   const { id } = useParams();
   const [service, setService] = useState(null);
+  const axiosInstance = useAxios();
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get(`http://localhost:5000/service/${id}`);
+      const { data } = await axiosInstance.get(`/service/${id}`);
       setService(data);
     }
     fetchData();

@@ -1,12 +1,13 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import useAxios from "../hooks/useAxios";
 
 export default function ServiceToDoRow({ index, service }) {
   const [status, setStatus] = useState(service.status);
+  const axiosInstance = useAxios();
 
   useEffect(() => {
     try {
-      axios.patch(`http://localhost:5000/bookings/${service._id}`, {
+      axiosInstance.patch(`/bookings/${service._id}`, {
         status,
       });
     } catch (error) {

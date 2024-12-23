@@ -1,19 +1,20 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 
 const BookNowForm = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
+  const axiosInstance = useAxios();
   const [service, setService] = useState({});
   const { image, name, price, _id, provider } = service;
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get(`http://localhost:5000/service/${id}`);
+      const { data } = await axiosInstance.get(`/service/${id}`);
       setService(data);
     }
     fetchData();
@@ -26,7 +27,7 @@ const BookNowForm = () => {
     data.status = "pending";
 
     try {
-      axios.post("http://localhost:5000/bookings", data).then((res) => {
+      axiosInstance.post("/bookings", data).then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
             title: "Good job!",

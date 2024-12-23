@@ -1,19 +1,20 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../hooks/useAuth";
+import useAxios from "../hooks/useAxios";
 
 const UpdateService = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
+  const axiosInstance = useAxios();
   const [service, setService] = useState({});
   const { image, name, price, serviceArea, description, _id } = service;
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get(`http://localhost:5000/service/${id}`);
+      const { data } = await axiosInstance.get(`/service/${id}`);
       setService(data);
     }
     fetchData();
@@ -42,26 +43,24 @@ const UpdateService = () => {
     };
 
     try {
-      axios
-        .put(`http://localhost:5000/updateService/${_id}`, newService)
-        .then((res) => {
-          if (res.data.modifiedCount) {
-            Swal.fire({
-              title: "Good job!",
-              text: "service has been updated successfully!!",
-              icon: "success",
-            });
-            navigate("/manageService");
-          }
-        });
+      axiosInstance.put(`/updateService/${_id}`, newService).then((res) => {
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            title: "Good job!",
+            text: "service has been updated successfully!!",
+            icon: "success",
+          });
+          navigate("/manageService");
+        }
+      });
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="min-h-screen  flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div className="min-h-screen  flex items-center justify-center my-6">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
         <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
           Update a Service
         </h2>

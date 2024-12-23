@@ -16,12 +16,16 @@ export default function useAxios() {
       return response;
     },
     (error) => {
-      if (error.response.status === 401 || error.response.status === 403) {
+      if (error?.response?.status === 401 || error?.response?.status === 403) {
+        console.log(error.response.status);
+
         singOutUser();
         then(() => {
-          setLoader(false);
+          console.log("axios3");
           navigate("/login");
+          setLoader(false);
         }).catch((error) => {
+          setLoader(false);
           console.log(error);
         });
       }

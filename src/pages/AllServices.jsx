@@ -1,16 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Service from "../components/Service";
+import useAxios from "../hooks/useAxios";
 
 export default function AllServices() {
   const [textValue, setTextValue] = useState("");
   const [services, setServices] = useState([]);
+  const axiosInstance = useAxios();
 
   useEffect(() => {
     async function fetchData() {
-      const { data } = await axios.get(
-        `http://localhost:5000/services?search=${textValue}`
-      );
+      const { data } = await axiosInstance.get(`/services?search=${textValue}`);
       setServices(data);
     }
     fetchData();

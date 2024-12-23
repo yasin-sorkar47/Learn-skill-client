@@ -60,9 +60,9 @@ export default function AuthProvider({ children }) {
             )
             .then((res) => {
               console.log(res.data);
+              setLoader(false);
+              setUser(currentUser);
             });
-          setUser(currentUser);
-          setLoader(false);
         } catch (error) {
           console.log(error);
         }
@@ -72,10 +72,10 @@ export default function AuthProvider({ children }) {
             .get("http://localhost:5000/logout", { withCredentials: true })
             .then((res) => {
               console.log(res.data);
+              console.log("user is logged out");
+              setLoader(false);
+              setUser(null);
             });
-          console.log("user is logged out");
-          setUser(null);
-          setLoader(false);
         } catch (error) {
           console.log(error);
         }

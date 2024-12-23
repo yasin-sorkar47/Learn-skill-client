@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import React from "react";
 
 const testimonials = [
   {
@@ -71,12 +70,7 @@ const Testimonials = () => {
           ))}
         </div>
         <div className="text-center mt-6">
-          <button
-            onClick={() => navigate("/services")}
-            className="btn btn-secondary"
-          >
-            See More...
-          </button>
+          <button className="btn btn-secondary">See More...</button>
         </div>
       </div>
     </section>

@@ -15,7 +15,7 @@ const ServiceDetails = () => {
   }, []);
 
   return (
-    <div className="rounded-lg  w-full max-w-4xl mx-auto p-8 ">
+    <div className="rounded-lg min-h-screen  w-full max-w-4xl mx-auto p-8 ">
       <h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-gray-400">
         Service Details
       </h1>

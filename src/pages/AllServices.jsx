@@ -1,15 +1,23 @@
-import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import Service from "../components/Service";
 
 export default function AllServices() {
   const [textValue, setTextValue] = useState("");
+  const [services, setServices] = useState([]);
 
-  console.log(textValue);
+  useEffect(() => {
+    async function fetchData() {
+      const { data } = await axios.get(
+        `http://localhost:5000/services?search=${textValue}`
+      );
+      setServices(data);
+    }
+    fetchData();
+  }, [textValue]);
 
-  const services = useLoaderData();
   return (
-    <div className="rounded-lg  w-full max-w-4xl mx-auto p-8 ">
+    <div className="rounded-lg min-h-screen  w-full max-w-4xl mx-auto p-8 ">
       <h1 className="text-3xl font-semibold text-center text-gray-700 dark:text-gray-400">
         All Services
       </h1>

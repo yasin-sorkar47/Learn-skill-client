@@ -18,8 +18,6 @@ export default function ServiceToDo() {
     fetchData();
   }, []);
 
-  console.log(services);
-
   return (
     <div className="min-h-screen  flex  justify-center">
       <div className=" p-8 rounded-lg  w-full max-w-[1500px]">

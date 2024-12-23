@@ -4,7 +4,7 @@ export default function NotFound() {
   const err = useRouteError();
 
   return (
-    <div className="bg-gradient-to-r from-[#23262f] to-[#11151c] min-h-screen flex flex-col justify-center items-center text-white">
+    <div className="bg-gradient-to-r from-green-200 to-green-400 min-h-screen flex flex-col justify-center items-center text-white">
       <div className="text-center">
         <h1 className="text-6xl font-bold text-yellow-500 mb-4">
           Oops! Page Not Found

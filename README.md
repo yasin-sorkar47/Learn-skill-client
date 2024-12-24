@@ -1,4 +1,4 @@
-## My Project Name is MovFix
+## My Project Name is Learn Skills
 
 here is the Link
 
@@ -6,8 +6,10 @@ here is the Link
 
 ### Key Features of my project
 
-- in this project you will see many movies card in that card you will get the button clicking that button it will take you to details page.
-- in details page you wil get three buttons.
-- one is add to favorites by that you can add movie as your favorite.
-- second is update by that you can update movie.
-- third is delete button by that you can delete movie.
+- in this project you will see many services card in that card you will get the button clicking that button it will take you to details page.
+- in details page you wil get a button.
+- clicking on that button it will take you to book now form where you can book a service.
+- you can also add a service.
+- you can manage your service like you can delete and update the service.
+- you can watch you booked service.
+- you manage your added service's status by service to do page

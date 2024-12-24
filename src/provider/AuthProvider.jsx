@@ -54,7 +54,7 @@ export default function AuthProvider({ children }) {
         try {
           axios
             .post(
-              "http://localhost:5000/jwt",
+              "https://education-services-server-a-10.vercel.app/jwt",
               { email },
               { withCredentials: true }
             )
@@ -69,7 +69,9 @@ export default function AuthProvider({ children }) {
       } else {
         try {
           axios
-            .get("http://localhost:5000/logout", { withCredentials: true })
+            .get("https://education-services-server-a-10.vercel.app/logout", {
+              withCredentials: true,
+            })
             .then((res) => {
               console.log(res.data);
               console.log("user is logged out");

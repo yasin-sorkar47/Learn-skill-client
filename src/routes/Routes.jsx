@@ -23,7 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/services?limit=4"),
+        loader: () =>
+          fetch(
+            "https://education-services-server-a-10.vercel.app/services?limit=4"
+          ),
       },
       {
         path: "/services",

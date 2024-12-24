@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
@@ -43,6 +44,9 @@ export default function Login() {
 
   return (
     <div className="hero  min-h-screen">
+      <Helmet>
+        <title>LearnSkills | Login</title>
+      </Helmet>
       <div className="card bg-base-100 w-full max-w-xl shrink-0 shadow-2xl">
         <h1 className="text-5xl font-bold text-center pt-8">Login now!</h1>
         <form onSubmit={handleSubmit} className="card-body">

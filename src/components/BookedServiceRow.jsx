@@ -22,7 +22,7 @@ export default function BookServiceRow({ index, service }) {
       <td>{service.serviceTakingDate}</td>
       <td>
         <span
-          className={`bg-purple-200 px-2 p-1 rounded-full text-purple-500 ${
+          className={`px-2 p-1 rounded-full  ${
             service.status === "pending" ? "text-purple-500 bg-purple-200 " : ""
           } ${
             service.status === "working" ? "text-yellow-500 bg-yellow-200 " : ""
